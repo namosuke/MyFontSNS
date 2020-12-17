@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import './main.scss'
 import homeIcon from './img/home.svg'
 import bellIcon from './img/bell.svg'
@@ -36,7 +36,7 @@ function Header() {
         <Profile />
       </Route>
       <Route path="/">
-        <span>Tegak</span>
+        Tegak
       </Route>
     </Switch>
   </div>;
@@ -75,31 +75,15 @@ function Contents() {
 }
 
 function Notifications() {
-  return (
-    <div>
-      通知
-    </div>
-  );
+  return <>通知</>;
 }
 
 function Messages() {
-  return (
-    <div>
-      ダイレクトメッセージ
-    </div>
-  );
+  return <>メッセージ</>;
 }
 function Profile() {
-  return (
-    <div>
-      プロフィール
-    </div>
-  );
+  return <>プロフィール</>;
 }
 function Timeline() {
-  return (
-    <div>
-      タイムライン
-    </div>
-  );
+  return <>タイムライン</>;
 }
