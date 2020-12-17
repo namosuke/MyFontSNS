@@ -12,6 +12,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import axios from 'axios';
 
 export default function App() {
   return (
@@ -26,18 +27,10 @@ export default function App() {
 function Header() {
   return <div className="header">
     <Switch>
-      <Route path="/notifications">
-        通知
-      </Route>
-      <Route path="/messages">
-        メッセージ
-      </Route>
-      <Route path="/profile">
-        プロフィール
-      </Route>
-      <Route path="/">
-        Tegak
-      </Route>
+      <Route path="/notifications">通知</Route>
+      <Route path="/messages">メッセージ</Route>
+      <Route path="/profile">プロフィール</Route>
+      <Route path="/">Tegak</Route>
     </Switch>
   </div>;
 }
@@ -81,9 +74,24 @@ function Notifications() {
 function Messages() {
   return <>メッセージ</>;
 }
+
 function Profile() {
   return <>プロフィール</>;
 }
+
 function Timeline() {
-  return <>タイムライン</>;
+  const [data, setData] = useState();
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get('./timeline.json');
+      setData(response.data);
+    }
+    getData();
+  }, []);
+  if (!data) return <>Loading...</>;
+  return (<>
+    {data.posts.map(item => (
+      <li key={item.id}>{item.text}</li>
+    ))}
+  </>);
 }

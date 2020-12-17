@@ -1,0 +1,22 @@
+{
+	"posts": [
+		{
+			"user": {
+				"id": 0,
+				"name": "ウラル",
+				"screen_id": "ural"
+			},
+			"id": 10000,
+			"text": "  オハイオ州\nイオ～"
+		},
+		{
+			"user": {
+				"id": 2,
+				"name": "Andy",
+				"screen_id": "sachiko"
+			},
+			"id": 10032,
+			"text": "<script>alert()</script>"
+		}
+	]
+}
