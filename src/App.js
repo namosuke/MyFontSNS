@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import './main.scss'
 import homeIcon from './img/home.svg'
 import bellIcon from './img/bell.svg'
 import messageIcon from './img/message.svg'
 import profileIcon from './img/profile.svg'
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,13 +27,13 @@ function Header() {
   return <div className="header">
     <Switch>
       <Route path="/notifications">
-        <Notifications />
+        通知
       </Route>
       <Route path="/messages">
-        <Messages />
+        メッセージ
       </Route>
       <Route path="/profile">
-        <Profile />
+        プロフィール
       </Route>
       <Route path="/">
         Tegak
