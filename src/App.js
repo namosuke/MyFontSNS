@@ -119,7 +119,7 @@ function Profile() {
     const getUserData= async () =>{
       const  response = await axios.get('./timeline.json');
       console.log(response.data.users);
-      //setData(response.data);
+      setData(response.data.users);
     }
     getUserData();
   },[]);
@@ -129,7 +129,7 @@ function Profile() {
   
   `}>
     <img src={loadIcon} className={'profile-icon'}  alt="読込中" />
-    <h2>{data}</h2>
+    <h2>Andy</h2>
 
 
   </div>
@@ -142,7 +142,7 @@ function Timeline() {
     const getData = async () => {
       const response = await axios.get('./timeline.json');
       console.log(response.data.users)
-      setData(response.data);
+      //setData(response.data);
     }
     getData();
   }, []);
