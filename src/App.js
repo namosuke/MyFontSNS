@@ -71,7 +71,12 @@ function Notifications() {
   useEffect(() => {
     new TegakiCanvas();
   });
-  return <canvas id="tegaki-canvas" className="bg-white"></canvas>;
+  return (<>
+    <div className="relative" style={{ width: "400px", height: "400px" }}>
+      <canvas id="tegaki-canvas" className="bg-white absolute"></canvas>
+      <div className="tegaki-model absolute w-full h-full">慶</div>
+    </div>
+  </>);
 }
 
 class TegakiCanvas {
