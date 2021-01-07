@@ -115,7 +115,13 @@ class TegakiCanvas {
       if (this.isDrawing === false || this.mouseX >= this.paperMarginLeft + this.paperWidth || this.mouseX < this.paperMarginLeft || this.mouseY >= this.paperMarginTop + this.paperHeight || this.mouseY < this.paperMarginTop) {
         return;
       }
-      this.addCellPt(this.mouseX, this.mouseY);
+      // マウス高速時の隙間を埋めます
+      let diffX = this.mouseX - this.lastMouseX;
+      let diffY = this.mouseY - this.lastMouseY;
+      let loopTimes = Math.ceil(Math.max(Math.abs(diffX), Math.abs(diffY)) / (this.paperWidth / this.cellX));  // セル正方形想定
+      for (let i = 0; i < loopTimes; i++) {
+        this.addCellPt(this.lastMouseX + (diffX / loopTimes) * i, this.lastMouseY + (diffY / loopTimes) * i);
+      }
       this.draw();
       this.lastMouseX = this.mouseX;
       this.lastMouseY = this.mouseY;
