@@ -118,21 +118,68 @@ function Profile() {
   useEffect(()=>{
     const getUserData= async () =>{
       const  response = await axios.get('./timeline.json');
-      console.log(response.data.users);
-      setData(response.data.users);
+      console.log(response.data.users[0].tags);
+      setData(response.data);
     }
     getUserData();
   },[]);
   if (!data) return <img src={loadIcon} className={'load-icon'}  alt="読込中" />;
   return (<>
-  <div className={`
-  
-  `}>
-    <img src={loadIcon} className={'profile-icon'}  alt="読込中" />
-    <h2>Andy</h2>
-
-
+  <div className={`container`}>
+    <div className={`left-container`}>
+      <img src={loadIcon} className={'profile-icon'}  alt="読込中" />
+      <h2>{data.users[0].name}</h2>
+      <h3>@user_id</h3>
+      <div>
+        <p>フォロー</p>
+        <p>フォロワー</p>
+      </div>
+    </div>
+    <div className={`right-container`}>
+      {data.users[0].tags.map(item =>
+          <p className={`tags`}>
+            {item}
+          </p>
+      )}
+    </div>
   </div>
+    <div>
+      <p className={` w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10`}>
+        フォントを見る
+      </p>
+    </div>
+    <div className={`posts-container`}>
+      {data.posts.map(item => (
+          <div className={"ml-3 inline-flex rounded-md box-container"} >
+            <div className={`
+                         items-center
+                         justify-center
+                         px-5
+                         py-3
+                         border
+                         border-transparent
+                         text-base
+                         font-medium
+                         rounded-md
+                         text-indigo-600
+                         hover:bg-indigo-50i
+                         post-card
+                         `}>
+              <p className={`
+                          text-lg
+                          name-tag`}>
+                {item.user.name}
+              </p>
+              <p className={`
+                         px-5 
+                         py-3` }>
+                {item.text}
+              </p>
+            </div>
+
+          </div>
+      ))}
+    </div>
   </>);
 }
 
@@ -152,16 +199,16 @@ function Timeline() {
         <div className={"ml-3 inline-flex rounded-md box-container"} >
           <div className={`
                          items-center
-                         justify-center 
-                         px-5 
-                         py-3 
-                         border 
-                         border-transparent 
-                         text-base 
-                         font-medium 
-                         rounded-md 
-                         text-indigo-600 
-                         hover:bg-indigo-50
+                         justify-center
+                         px-5
+                         py-3
+                         border
+                         border-transparent
+                         text-base
+                         font-medium
+                         rounded-md
+                         text-indigo-600
+                         hover:bg-indigo-50i
                          post-card
                          `}>
             <p className={`
