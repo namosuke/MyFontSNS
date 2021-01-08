@@ -11,16 +11,24 @@
 		},
 		{
 			"user": {
+				"id": 0,
+				"name": "ウラル",
+				"screen_id": "ural"
+			},
+			"id": 10000,
+			"text": "  オハイオ州\nイオ～"
+		},
+		{
+			"user": {
 				"id": 1,
-				"name": "ウラル",
-				"screen_id": "ural"
+				"name": "andy",
+				"screen_id": "sachiko"
 			},
 			"id": 10000,
 			"text": "  オハイオ州\nイオ～"
-		},
-		{
+		},		{
 			"user": {
-				"id": 4,
+				"id": 0,
 				"name": "ウラル",
 				"screen_id": "ural"
 			},
@@ -28,15 +36,7 @@
 			"text": "  オハイオ州\nイオ～"
 		},		{
 			"user": {
-				"id": 3,
-				"name": "ウラル",
-				"screen_id": "ural"
-			},
-			"id": 10000,
-			"text": "  オハイオ州\nイオ～"
-		},		{
-			"user": {
-				"id": 5,
+				"id": 0,
 				"name": "ウラル",
 				"screen_id": "ural"
 			},
@@ -47,7 +47,7 @@
 
 		{
 			"user": {
-				"id": 2,
+				"id": 1,
 				"name": "Andy",
 				"screen_id": "sachiko"
 			},
@@ -58,8 +58,11 @@
 	"users": [
 		{
 			"id": 1,
-		"name":"andy",
-		"tags": ["a","b"]
+			"name":"Andy",
+			"screen_id": "sachiko",
+			"tags": ["a","b"],
+			"follow":[0,2,5,3,5],
+			"follower": [0,2,4,5,3]
 		}
 ]
 }

@@ -23,6 +23,7 @@ canvas {
 .header {
 	background: $accent-color;
 	color: white;
+	z-index:10;
 }
 .footer {
 	background: $accent-color;
@@ -44,6 +45,7 @@ canvas {
 	height: 150px;
 	margin: 0 auto;
 	box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+	max-width:90%;
 	p{
 		display: block;
 	}
@@ -63,6 +65,7 @@ background-color: $post-blue;
 	bottom:175px;
 	left:48%;
 	transform: rotate(18deg);
+
 }
 .box-container{
 	margin:35px auto 10px;
@@ -83,6 +86,33 @@ background-color: $post-blue;
 .profile-icon{
 	width:50px;
 }
+
+.profile-container{
+	background-image:url('./img/paper.jpg');
+	padding: 10px;
+}
+.posts-container{
+	margin:20px;
+	.post-card{
+		width:300px;
+		height:150px;
+	}
+}
+.grid{
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 2fr 1fr;
+}
+
+.follow-container{
+p{
+	display:inline-block;
+	margin:auto 10px;
+}
+	p:first-child{
+		margin-left:0;
+	}
+}
 .tags{
-	color:darkgreen;
+	margin:10px auto;
 }
