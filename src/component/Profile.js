@@ -1,6 +1,7 @@
 import axios from "axios";
 import loadIcon from "../img/loading.svg";
 import React, { useEffect, useState } from 'react';
+import PostCard from "./PostCard";
 
 const Profile = () => {
     const [data, setData] =useState();
@@ -27,25 +28,7 @@ const Profile = () => {
                 </div>
                 <div className={`right-container`}>
                     {data.users[0].tags.map(item =>
-                        <p className={`
-            flex 
-            items-center
-            justify-center
-            px-1
-            py-1
-            border
-            border-transparent 
-            text-base 
-            font-medium 
-            rounded-md 
-            text-white 
-            bg-indigo-600 
-            hover:bg-indigo-700 
-            md:py-4 
-            md:text-lg 
-            md:px-10
-            tags
-            `}>
+                        <p className={`tags`}>
                             {item}
                         </p>
                     )}
@@ -54,40 +37,13 @@ const Profile = () => {
 
 
             <div>
-                <p className={` w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10`}>
+                <p className={`look-at-fonts`}>
                     フォントを見る
                 </p>
             </div>
             <div className={`posts-container`}>
-                {data.posts.map(item => item.user.id==data.users[0].id ?(
-                    <div className={"ml-3 inline-flex rounded-md box-container"} >
-                        <div className={`
-                         items-center
-                         justify-center
-                         px-5
-                         py-3
-                         border
-                         border-transparent
-                         text-base
-                         font-medium
-                         rounded-md
-                         text-indigo-600
-                         hover:bg-indigo-50i
-                         post-card
-                         `}>
-                            <p className={`
-                          text-lg
-                          name-tag`}>
-                                {item.user.name}
-                            </p>
-                            <p className={`
-                         px-5 
-                         py-3` }>
-                                {item.text}
-                            </p>
-                        </div>
-
-                    </div>
+                {data.posts.map(item => item.user.id == data.users[0].id ?(
+                    <PostCard userName={item.user.name} postText={item.text}/>
                 ):(''))}
             </div>
         </div>

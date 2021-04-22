@@ -40,20 +40,7 @@ canvas {
 	}
 }
 
-.post-card{
-	background-color: $post-blue;
-	width: 400px;
-	height: 150px;
-	margin: 0 auto;
-	box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-	max-width:90%;
-	p{
-		display: block;
-	}
-}
-.post-card:nth-last-child(2n){
-background-color: $post-blue;
-}
+
 
 .box-container::after{
 	content:" ";
@@ -77,9 +64,7 @@ background-color: $post-blue;
 .m3{
 	display: flex;
 }
-.name-tag{
 
-}
 .load-icon{
 	margin:auto 0;
 	width:80%;
@@ -114,9 +99,7 @@ p{
 		margin-left:0;
 	}
 }
-.tags{
-	margin:10px auto;
-}
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
 .tegaki-model {
 	font-family: 'Noto Sans JP', sans-serif;
@@ -125,4 +108,106 @@ p{
 	color: rgba(126, 126, 126, 0.1);
 	font-size: 400px;
 	pointer-events: none;
+}
+
+/* ここからは、tailwindの@apply で対処している場所(これで対応していく)*/
+
+
+.timeline-box{
+	@apply
+	ml-3
+	inline-flex
+	rounded-md
+	box-container
+}
+.post-card{
+	background-color: $post-blue;
+	width: 400px;
+	height: 150px;
+	margin: 0 auto;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+	max-width:90%;
+	p{
+		display: block;
+	}
+	@apply
+	items-center
+	justify-center
+	px-5
+	py-3
+	border
+	border-transparent
+	text-base
+	font-medium
+	rounded-md
+	text-indigo-600
+}
+
+.post-card:nth-last-child(2n){
+	background-color: $post-blue;
+}
+.name-tag{
+	@apply
+	text-lg
+}
+.post-card-text{
+	@apply
+	px-5
+	py-3
+}
+.profile-box{
+	@apply
+	items-center
+	justify-center
+	px-5
+	py-3
+	border
+	border-transparent
+	text-base
+	font-medium
+	rounded-md
+	text-indigo-600
+	hover:bg-indigo-500
+	post-card
+}
+/* 共通化予定ボタン*/
+.look-at-fonts{
+	@apply
+	w-full
+	flex
+	items-center
+	justify-center
+	px-8
+	py-3
+	border
+	border-transparent
+	text-base
+	font-medium
+	rounded-md
+	text-white
+	bg-indigo-600
+	hover:bg-indigo-700
+	md:py-4
+	md:text-lg
+	md:px-10
+}
+.tags{
+	margin:10px auto;
+	@apply
+	flex
+	items-center
+	justify-center
+	px-1
+	py-1
+	border
+	border-transparent
+	text-base
+	font-medium
+	rounded-md
+	text-white
+	bg-indigo-600
+	hover:bg-indigo-700
+	md:py-4
+	md:text-lg
+	md:px-10
 }
