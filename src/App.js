@@ -1,4 +1,5 @@
 import './main.scss'
+
 import React from 'react';
 import { BrowserRouter, Route, Switch,Redirect } from "react-router-dom";
 import NotificationView from "./view/NotificationView";
