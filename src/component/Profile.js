@@ -28,21 +28,21 @@ const Profile = () => {
                 <div className={`right-container`}>
                     {data.users[0].tags.map(item =>
                         <p className={`
-            flex 
+            flex
             items-center
             justify-center
             px-1
             py-1
             border
-            border-transparent 
-            text-base 
-            font-medium 
-            rounded-md 
-            text-white 
-            bg-indigo-600 
-            hover:bg-indigo-700 
-            md:py-4 
-            md:text-lg 
+            border-transparent
+            text-base
+            font-medium
+            rounded-md
+            text-white
+            bg-indigo-600
+            hover:bg-indigo-700
+            md:py-4
+            md:text-lg
             md:px-10
             tags
             `}>
@@ -59,7 +59,7 @@ const Profile = () => {
                 </p>
             </div>
             <div className={`posts-container`}>
-                {data.posts.map(item => item.user.id==data.users[0].id ?(
+                {data.posts.map(item => item.user.id === data.users[0].id ?(
                     <div className={"ml-3 inline-flex rounded-md box-container"} >
                         <div className={`
                          items-center
@@ -81,7 +81,7 @@ const Profile = () => {
                                 {item.user.name}
                             </p>
                             <p className={`
-                         px-5 
+                         px-5
                          py-3` }>
                                 {item.text}
                             </p>
