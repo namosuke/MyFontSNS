@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import homeIcon from '../assets/home.svg';
 import bellIcon from '../assets/bell.svg';
-import messageIcon from '../assets/message.svg';
 import profileIcon from '../assets/profile.svg';
+import messageIcon from '../assets/message.svg';
 
 const Footer = () => (
   <div className="footer">
