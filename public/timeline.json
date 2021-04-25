@@ -1,68 +1,83 @@
 {
-	"posts": [
-		{
-			"user": {
-				"id": 0,
-				"name": "ウラル",
-				"screen_id": "ural"
-			},
-			"id": 10000,
-			"text": "  オハイオ州\nイオ～"
-		},
-		{
-			"user": {
-				"id": 0,
-				"name": "ゆりあ",
-				"screen_id": "ural"
-			},
-			"id": 10000,
-			"text": "  今学期反省点多すぎて辛い"
-		},
-		{
-			"user": {
-				"id": 1,
-				"name": "ndy",
-				"screen_id": "sachiko"
-			},
-			"id": 10000,
-			"text": "  絶鬼しました\nイオ～"
-		},		{
-			"user": {
-				"id": 0,
-				"name": "ウラル",
-				"screen_id": "ural"
-			},
-			"id": 10000,
-			"text": "  PHP\n何もわからねぇ"
-		},		{
-			"user": {
-				"id": 0,
-				"name": "ウラル",
-				"screen_id": "ural"
-			},
-			"id": 10000,
-			"text": "  オハイオ州\nイオ～"
-		},
-
-
-		{
-			"user": {
-				"id": 1,
-				"name": "Andy",
-				"screen_id": "sachiko"
-			},
-			"id": 10032,
-			"text": "<script>alert()</script>\nエラーのテスト"
-		}
-	],
-	"users": [
-		{
-			"id": 1,
-			"name":"Andy",
-			"screen_id": "sachiko",
-			"tags": ["a","b"],
-			"follow":[0,2,5,3,5],
-			"follower": [0,2,4,5,3]
-		}
-]
+  "posts": [
+    {
+      "user": {
+        "id": 0,
+        "name": "ウラル",
+        "screen_id": "ural"
+      },
+      "id": 10000,
+      "text": "  オハイオ州\nイオ～"
+    },
+    {
+      "user": {
+        "id": 0,
+        "name": "ゆりあ",
+        "screen_id": "ural"
+      },
+      "id": 10000,
+      "text": "  今学期反省点多すぎて辛い"
+    },
+    {
+      "user": {
+        "id": 1,
+        "name": "ndy",
+        "screen_id": "sachiko"
+      },
+      "id": 10000,
+      "text": "  絶鬼しました\nイオ～"
+    },
+    {
+      "user": {
+        "id": 0,
+        "name": "ウラル",
+        "screen_id": "ural"
+      },
+      "id": 10000,
+      "text": "  PHP\n何もわからねぇ"
+    },
+    {
+      "user": {
+        "id": 0,
+        "name": "ウラル",
+        "screen_id": "ural"
+      },
+      "id": 10000,
+      "text": "  オハイオ州\nイオ～"
+    },
+    {
+      "user": {
+        "id": 1,
+        "name": "Andy",
+        "screen_id": "sachiko"
+      },
+      "id": 10032,
+      "text": "<script>alert()</script>\nエラーのテスト"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Andy",
+      "screen_id": "sachiko",
+      "tags": [
+        "a",
+        "b"
+      ],
+      "follow": [
+        0,
+        2,
+        5,
+        3,
+        5
+      ],
+      "follower": [
+        0,
+        2,
+        4,
+        5,
+        3
+      ]
+    }
+  ]
 }
