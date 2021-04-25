@@ -1,12 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 const Header = () => (
   <div className="header sticky top-0 w-full text-center text-2xl pt-1 h-11">
-    <NavLink exact to="/">Tegak</NavLink>
-    <NavLink exact to="/notifications">通知</NavLink>
-    <NavLink exact to="/messages">メッセージ</NavLink>
-    <NavLink exact to="/profile">プロフィール</NavLink>
+    <Route exact path="/">
+      <Link to="/">Tegak</Link>
+    </Route>
+    <Route path="/notifications">
+      <Link to="/notifications">通知</Link>
+    </Route>
+    <Route path="/messages">
+      <Link to="/messages">メッセージ</Link>
+    </Route>
+    <Route path="/profile">
+      <Link to="/profile">プロフィール</Link>
+    </Route>
   </div>
 );
 export default Header;
