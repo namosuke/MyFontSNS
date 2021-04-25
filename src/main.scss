@@ -3,126 +3,160 @@
 @tailwind utilities;
 
 input[type="button"], input[type="submit"], button, select, summary {
-	cursor: pointer;
+  cursor: pointer;
 }
-/* スタイルここから */
 
+/* スタイルここから */
 $accent-color:  rgb(255, 196, 0);
 $base-color: lemonchiffon;
-$orange:#E48E00;
-$post-blue:#DDF7FD;
-$post-pink:#FDDDFA;
-$post-yellow:#F8FAC4;
+$orange: #E48E00;
+$post-blue: #DDF7FD;
+$post-pink: #FDDDFA;
+$post-yellow: #F8FAC4;
+
 body {
-	background-color: $base-color;
+  background-color: $base-color;
 }
+
 canvas {
-	image-rendering: pixelated;
-	image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
+
 .header {
-	background: $accent-color;
-	color: white;
-	z-index:10;
+  z-index: 10;
+
+  color: white;
+  background: $accent-color;
 }
+
 .footer {
-	background: $accent-color;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 50px;
-	text-align: center;
-	font-size: 20px;
-	img {
-		display: inline-block;
-		margin: 10px;
-	}
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 50px;
+
+  text-align: center;
+
+  background: $accent-color;
+
+  font-size: 20px;
+
+  img {
+    display: inline-block;
+
+    margin: 10px;
+  }
 }
 
-.post-card{
-	background-color: $post-blue;
-	width: 400px;
-	height: 150px;
-	margin: 0 auto;
-	box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-	max-width:90%;
-	p{
-		display: block;
-	}
-}
-.post-card:nth-last-child(2n){
-background-color: $post-blue;
+.post-card {
+  width: 400px;
+  max-width: 90%;
+  height: 150px;
+  margin: 0 auto;
+
+  background-color: $post-blue;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+
+  p{
+    display: block;
+  }
 }
 
-.box-container::after{
-	content:" ";
-	background-color: rgba(255,255,255,0.3);
-	border: solid 1px #282c34;
-	width:30px;
-	height:50px;
-	display: inline-block;
-	position: relative;
-	bottom:175px;
-	left:48%;
-	transform: rotate(18deg);
+.post-card:nth-last-child(2n) {
+  background-color: $post-blue;
+}
+
+.box-container::after {
+  position: relative;
+  bottom: 175px;
+  left: 48%;
+
+  display: inline-block;
+
+  width: 30px;
+  height: 50px;
+
+  content: " ";
+  transform: rotate(18deg);
+
+  border: solid 1px #282c34;
+  background-color: rgba(255,255,255,0.3);
 
 }
-.box-container{
-	margin:35px auto 10px;
-	flex-direction: column;
-	width: 100%;
+.box-container {
+  flex-direction: column;
+
+  width: 100%;
+  margin: 35px auto 10px;
+}
+
+.m3 {
+  display: flex;
+}
+
+.name-tag {
 
 }
-.m3{
-	display: flex;
-}
-.name-tag{
 
+.load-icon {
+  width: 80%;
+  margin: auto 0;
 }
-.load-icon{
-	margin:auto 0;
-	width:80%;
-}
-.profile-icon{
-	width:50px;
+
+.profile-icon {
+  width: 50px;
 }
 
 .profile-container{
-	background-image:url('./assets/paper.jpg');
-	padding: 10px;
-}
-.posts-container{
-	margin:20px;
-	.post-card{
-		width:300px;
-		height:150px;
-	}
-}
-.grid{
-	display: grid;
-	gap: 10px;
-	grid-template-columns: 2fr 1fr;
+  padding: 10px;
+
+  background-image: url('./assets/paper.jpg');
 }
 
-.follow-container{
-p{
-	display:inline-block;
-	margin:auto 10px;
+.posts-container {
+  margin: 20px;
+
+  .post-card {
+    width: 300px;
+    height: 150px;
+  }
 }
-	p:first-child{
-		margin-left:0;
-	}
+
+.grid {
+  display: grid;
+
+  gap: 10px;
+  grid-template-columns: 2fr 1fr;
 }
-.tags{
-	margin:10px auto;
+
+.follow-container {
+  p{
+    display: inline-block;
+
+    margin: auto 10px;
+  }
+
+  p:first-child{
+    margin-left: 0;
+  }
 }
+
+.tags {
+  margin: 10px auto;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
 .tegaki-model {
-	font-family: 'Noto Sans JP', sans-serif;
-	line-height: 0.9;
-	text-align: center;
-	color: rgba(126, 126, 126, 0.1);
-	font-size: 400px;
-	pointer-events: none;
+  text-align: center;
+  pointer-events: none;
+
+  color: rgba(126, 126, 126, 0.1);
+
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 400px;
+  line-height: 0.9;
 }
