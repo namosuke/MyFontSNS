@@ -4,10 +4,10 @@ import React from 'react';
 import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
-import NotificationView from './view/NotificationView';
-import ProfileView from './view/ProfileView';
-import TimelineView from './view/TimelineView';
-import MessageView from './view/MessageView';
+import NotificationView from './views/NotificationView';
+import ProfileView from './views/ProfileView';
+import TimelineView from './views/TimelineView';
+import MessageView from './views/MessageView';
 
 const App = () => (
   <BrowserRouter>

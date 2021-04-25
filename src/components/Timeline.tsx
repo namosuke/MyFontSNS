@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import loadIcon from '../img/loading.svg';
+import loadIcon from '../assets/loading.svg';
 
 const Timeline = () => {
   const [data, setData] = useState<any | undefined>();

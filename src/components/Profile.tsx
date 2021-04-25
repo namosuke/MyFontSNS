@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import loadIcon from '../img/loading.svg';
+import loadIcon from '../assets/loading.svg';
 
 const Profile = () => {
   const [data, setData] = useState<any | undefined>();
