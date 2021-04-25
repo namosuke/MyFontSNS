@@ -1,56 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { usePosts } from '../util/fetch';
 
-import loadIcon from '../assets/loading.svg';
+import Loading from '../components/Loading';
 
 const Timeline = () => {
-  const [data, setData] = useState<any | undefined>();
-  useEffect(() => {
-    const getData = async () => {
-      const response = await axios.get('./timeline.json');
-      console.log(response.data);
-      setData(response.data);
-    };
-    getData();
-  }, []);
-  if (!data) return <img src={loadIcon} className="load-icon" alt="読込中" />;
+  const posts = usePosts();
+
+  if (!posts) return <Loading className="load-icon" />;
+
   return (
     <>
-      {data.posts.map((item: any) => (
-        <div className="ml-3 inline-flex rounded-md box-container">
-          <div className={`
-                         items-center
-                         justify-center
-                         px-5
-                         py-3
-                         border
-                         border-transparent
-                         text-base
-                         font-medium
-                         rounded-md
-                         text-indigo-600
-                         hover:bg-indigo-50i
-                         post-card
-                         `}
-          >
-            <p className={`
-                          text-lg
-                          name-tag`}
+      {
+        posts.map((post) => (
+          <div key={post.id} className="ml-3 inline-flex rounded-md box-container">
+            <div className={[
+              'items-center',
+              'justify-center',
+              'px-5',
+              'py-3',
+              'border',
+              'border-transparent',
+              'text-base',
+              'font-medium',
+              'rounded-md',
+              'text-indigo-600',
+              'hover:bg-indigo-50i',
+              'post-card',
+            ].join(' ')}
             >
-              {item.user.name}
-            </p>
-            <p className={`
-                         px-5
-                         py-3`}
-            >
-              {item.text}
-            </p>
-            <div className="post-bottom" />
+              <p className="text-lg name-tag">{post.user.name}</p>
+              <p className="px-5 py-3">{post.text}</p>
+              <div className="post-bottom" />
+            </div>
           </div>
-        </div>
-
-        // <li key={item.id}>{item.text}</li>
-      ))}
+        ))
+      }
     </>
   );
 };

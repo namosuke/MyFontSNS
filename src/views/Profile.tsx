@@ -1,110 +1,92 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useCurrentUser, usePosts } from '../util/fetch';
 
-import loadIcon from '../assets/loading.svg';
+import Loading from '../components/Loading';
 
 const Profile = () => {
-  const [data, setData] = useState<any | undefined>();
+  const currentUser = useCurrentUser();
+  const posts = usePosts();
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const response = await axios.get('./timeline.json');
-      console.log(response.data.users[0].tags);
-      setData(response.data);
-    };
-    getUserData();
-  }, []);
+  if (!currentUser || !posts) return <Loading className="load-icon" />;
 
-  if (!data) return <img src={loadIcon} className="load-icon" alt="読込中" />;
   return (
     <>
       <div className="profile-container">
+
         <div className="profile-main-container grid">
           <div className="left-container">
-            <img src={loadIcon} className="profile-icon" alt="読込中" />
-            <h2>{data.users[0].name}</h2>
-            <h3>
-              @
-              {data.users[0].screen_id}
-            </h3>
+            <Loading className="profile-icon" />
+            <h2>{currentUser.name}</h2>
+            <h3>{`@${currentUser.screen_id}`}</h3>
             <div className="follow-container">
-              <p>
-                フォロー
-                {data.users[0].follow.length}
-              </p>
-              <p>
-                フォロワー
-                {data.users[0].follower.length}
-              </p>
+              <p>{`フォロー${currentUser.follow.length}`}</p>
+              <p>{`フォロワー${currentUser.follower.length}`}</p>
             </div>
           </div>
+
           <div className="right-container">
-            {data.users[0].tags.map((item: any) => (
-              <p className={`
-            flex
-            items-center
-            justify-center
-            px-1
-            py-1
-            border
-            border-transparent
-            text-base
-            font-medium
-            rounded-md
-            text-white
-            bg-indigo-600
-            hover:bg-indigo-700
-            md:py-4
-            md:text-lg
-            md:px-10
-            tags
-            `}
-              >
-                {item}
-              </p>
-            ))}
+            {
+              currentUser.tags.map((tag) => (
+                <p
+                  key={tag}
+                  className={[
+                    'flex', 'items-center', 'justify-center',
+                    'px-1', 'py-1',
+                    'border', 'border-transparent',
+                    'text-base', 'font-medium', 'text-white',
+                    'rounded-md',
+                    'bg-indigo-600', 'hover:bg-indigo-700',
+                    'md:py-4', 'md:text-lg', 'md:px-10',
+                    'tags',
+                  ].join(' ')}
+                >
+                  {tag}
+                </p>
+              ))
+            }
           </div>
         </div>
 
         <div>
-          <p className=" w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+          <p className={[
+            'w-full',
+            'flex', 'items-center', 'justify-center',
+            'px-8', 'py-3',
+            'border', 'border-transparent',
+            'text-base', 'font-medium', 'text-white',
+            'rounded-md',
+            'bg-indigo-600', 'hover:bg-indigo-700',
+            'md:py-4', 'md:text-lg', 'md:px-10',
+          ].join(' ')}
+          >
             フォントを見る
           </p>
         </div>
-        <div className="posts-container">
-          {data.posts.map((item: any) => (item.user.id === data.users[0].id ? (
-            <div className="ml-3 inline-flex rounded-md box-container">
-              <div className={`
-                         items-center
-                         justify-center
-                         px-5
-                         py-3
-                         border
-                         border-transparent
-                         text-base
-                         font-medium
-                         rounded-md
-                         text-indigo-600
-                         hover:bg-indigo-50i
-                         post-card
-                         `}
-              >
-                <p className={`
-                          text-lg
-                          name-tag`}
-                >
-                  {item.user.name}
-                </p>
-                <p className={`
-                         px-5
-                         py-3`}
-                >
-                  {item.text}
-                </p>
-              </div>
 
-            </div>
-          ) : ('')))}
+        <div className="posts-container">
+          {
+            posts.filter((post) => post.user.id === currentUser.id)
+              .map((post) => (
+                <div
+                  key={post.id}
+                  className="ml-3 inline-flex rounded-md box-container"
+                >
+                  <div className={[
+                    'items-center', 'justify-center',
+                    'px-5', 'py-3',
+                    'border', 'border-transparent',
+                    'text-base', 'font-medium',
+                    'rounded-md',
+                    'text-indigo-600', 'hover:bg-indigo-50i',
+                    'post-card',
+                  ].join(' ')}
+                  >
+                    <p className="text-lg name-tag">{post.user.name}</p>
+                    <p className="px-5 py-3">{post.text}</p>
+                  </div>
+                </div>
+              ))
+          }
         </div>
       </div>
     </>

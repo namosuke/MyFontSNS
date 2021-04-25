@@ -49,6 +49,7 @@ module.exports = {
       {
         allow: [
           'log',
+          'error',
         ],
       },
     ],
@@ -61,5 +62,6 @@ module.exports = {
         ],
       },
     ],
+    'react/jsx-props-no-spreading': 'off',
   },
 };
