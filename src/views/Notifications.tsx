@@ -1,4 +1,5 @@
 import React from 'react';
+
 import TegakiCanvas from '../components/TegakiCanvas';
 
 const Notifications = () => (
