@@ -1,88 +1,112 @@
 /* eslint-disable max-len */
 import React, { useEffect, useRef } from 'react';
 
+interface Position {
+  x: number;
+  y: number;
+}
+
 const TegakiCanvas = (props: any) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const cellSize = 12;
+    const [rowCellCount, colCellCount] = [32, 32];
+    const cells = Array(rowCellCount).fill(0).map(() => Array(colCellCount).fill(0));
+
     const canvas = canvasRef.current!;
-    canvas.width = 400;
-    canvas.height = 400;
 
-    const canvasPixelTimes = canvas.width / canvas.clientWidth;
+    // cellSize の倍数でないと隙間ができる
+    canvas.width = rowCellCount * cellSize;
+    canvas.height = colCellCount * cellSize;
+
     const ctx = canvas.getContext('2d')!;
-    const cellX = 32;
-    const cellY = 32;
-    const cellArr = Array.from(new Array(cellY), () => new Array(cellX).fill(0));
-    const paperMarginLeft = 8;
-    const paperMarginTop = 8;
-    const paperWidth = 384; // 32の倍数でないと隙間ができる
-    const paperHeight = 384;
-    ctx.fillStyle = 'black';
-    ctx.strokeRect(paperMarginLeft + 0.5, paperMarginTop + 0.5, paperWidth, paperHeight);
-    let isDrawing = false;
-    const addCellPt = (mouseX: number, mouseY: number) => {
-      cellArr[Math.floor(((mouseY - paperMarginTop) * cellY) / paperHeight)][Math.floor(((mouseX - paperMarginLeft) * cellX) / paperWidth)] = 1;
+
+    // TODO: do we need canvas.height / canvas.clientHeight?
+    const canvasPixelTimes = canvas.width / canvas.clientWidth;
+    let previousMousePos: Position | null = null;
+
+    const isMouseInPaper = (mousePos: Position) => (
+      mousePos.x < 0 || mousePos.x >= canvas.width
+      || mousePos.y < 0 || mousePos.y >= canvas.height
+    );
+
+    const addCell = (mousePos: Position) => {
+      const rowIdx = Math.floor(mousePos.y / cellSize);
+      const colIdx = Math.floor(mousePos.x / cellSize);
+
+      cells[rowIdx][colIdx] = 1;
     };
 
-    const draw = () => {
-      for (let y = 0; y < cellY; y += 1) {
-        for (let x = 0; x < cellX; x += 1) {
-          if (cellArr[y][x]) {
-            ctx.fillRect(
-              paperMarginLeft + Math.floor((paperWidth / cellX) * x),
-              paperMarginTop + Math.floor((paperHeight / cellY) * y),
-              Math.floor(paperWidth / cellX),
-              Math.floor(paperHeight / cellY),
-            );
+    // マウス高速時の隙間を埋めます
+    const interpolateCells = (e: MouseEvent) => {
+      // TODO: better variable name
+      const diffX = e.movementX;
+      const diffY = e.movementY;
+      const maxDiff = Math.max(Math.abs(diffX), Math.abs(diffY));
+      const loopTimes = Math.ceil(maxDiff / cellSize);
+
+      Array(loopTimes).fill(loopTimes).map((num, idx) => ({
+        // TODO: find a way to remove non-null-assertion-operator here
+        x: previousMousePos!.x + (diffX / num) * idx,
+        y: previousMousePos!.y + (diffY / num) * idx,
+      })).forEach(addCell);
+    };
+
+    const renderCells = () => {
+      cells.forEach((row, rowIdx) => {
+        row.forEach((col, colIdx) => {
+          if (col) {
+            ctx.fillRect(cellSize * colIdx, cellSize * rowIdx, cellSize, cellSize);
           }
-        }
-      }
+        });
+      });
     };
 
-    let lastMouseX: number;
-    let lastMouseY: number;
+    const draw = (e: MouseEvent) => {
+      // TODO: MouseEvent.offsetX & MouseEvent.offsetY are experimental technology
+      // Find an alternative way to implement it.
+      const currentMousePos = {
+        x: e.offsetX * canvasPixelTimes,
+        y: e.offsetY * canvasPixelTimes,
+      };
+
+      if (isMouseInPaper(currentMousePos)) return;
+
+      addCell(currentMousePos);
+      interpolateCells(e);
+      renderCells();
+
+      previousMousePos = {
+        x: currentMousePos.x,
+        y: currentMousePos.y,
+      };
+    };
 
     canvas.addEventListener('mousedown', (e) => {
-      const mouseX = e.offsetX * canvasPixelTimes;
-      const mouseY = e.offsetY * canvasPixelTimes;
-      if (mouseX >= paperMarginLeft + paperWidth || mouseX < paperMarginLeft || mouseY >= paperMarginTop + paperHeight || mouseY < paperMarginTop) {
-        return;
-      }
-      isDrawing = true;
-      addCellPt(mouseX, mouseY);
-      draw();
-      lastMouseX = mouseX;
-      lastMouseY = mouseY;
+      draw(e);
+      canvas.addEventListener('mousemove', draw);
     });
-    canvas.addEventListener('mousemove', (e) => {
-      const mouseX = e.offsetX * canvasPixelTimes;
-      const mouseY = e.offsetY * canvasPixelTimes;
-      if (isDrawing === false
-        || mouseX >= paperMarginLeft + paperWidth
-        || mouseX < paperMarginLeft
-        || mouseY >= paperMarginTop + paperHeight
-        || mouseY < paperMarginTop) {
-        return;
-      }
-      // マウス高速時の隙間を埋めます
-      const diffX = mouseX - lastMouseX;
-      const diffY = mouseY - lastMouseY;
-      const loopTimes = Math.ceil(Math.max(Math.abs(diffX), Math.abs(diffY)) / (paperWidth / cellX)); // セル正方形想定
-      for (let i = 0; i < loopTimes; i += 1) {
-        addCellPt(lastMouseX + (diffX / loopTimes) * i, lastMouseY + (diffY / loopTimes) * i);
-      }
-      draw();
-      lastMouseX = mouseX;
-      lastMouseY = mouseY;
-    });
-    window.addEventListener('mouseup', () => {
-      isDrawing = false;
-    });
-  });
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <canvas ref={canvasRef} {...props} />;
+    window.addEventListener('mouseup', () => {
+      canvas.removeEventListener('mousemove', draw);
+    });
+  }, []);
+
+  console.log();
+
+  const s = {
+    // TODO: remove magic number 8px (margin = outline)
+    margin: '8px',
+    outline: 'white solid 8px',
+    border: '2px solid black',
+    // TODO: check if calc(100% - 16px) works
+    // TODO: remove magic number 16px (16px = margin * 2)
+    width: 'calc(100% - 16px)',
+    height: 'calc(100% - 16px)',
+  };
+
+  return <canvas {...props} ref={canvasRef} style={s} />;
 };
 
 export default TegakiCanvas;
