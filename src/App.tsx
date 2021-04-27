@@ -1,23 +1,29 @@
-import './main.scss';
-
 import React from 'react';
 import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
-import NotificationView from './view/NotificationView';
-import ProfileView from './view/ProfileView';
-import TimelineView from './view/TimelineView';
-import MessageView from './view/MessageView';
+
+import Notifications from './views/Notifications';
+import Profile from './views/Profile';
+import Timeline from './views/Timeline';
+import Messages from './views/Messages';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+import './main.scss';
 
 const App = () => (
   <BrowserRouter>
+    <Header />
     <Switch>
-      <Route exact path="/" component={TimelineView} />
-      <Route exact path="/profile" component={ProfileView} />
-      <Route path="/messages" component={MessageView} />
-      <Route path="/notifications" component={NotificationView} />
+      <Route exact path="/" component={Timeline} />
+      <Route exact path="/profile" component={Profile} />
+      <Route path="/messages" component={Messages} />
+      <Route path="/notifications" component={Notifications} />
       <Redirect to="/" />
     </Switch>
+    <Footer />
   </BrowserRouter>
 );
 
