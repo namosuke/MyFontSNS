@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom';
 const Header = () => (
   <div className="header sticky top-0 w-full text-center text-2xl pt-1 h-11">
     <Route exact path="/">
-      <Link to="/">Tegaki</Link>
+      <Link to="/">Mojy</Link>
     </Route>
     <Route path="/notifications">
       <Link to="/notifications">通知</Link>
