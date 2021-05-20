@@ -1,4 +1,6 @@
 import React from 'react';
-import Notifications from "./FontSet";
 
+const Notifications = () => (
+  <></>
+);
 export default Notifications;

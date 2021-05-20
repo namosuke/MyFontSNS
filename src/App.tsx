@@ -21,7 +21,7 @@ const App = () => (
       <Route exact path="/profile" component={Profile} />
       <Route path="/messages" component={Messages} />
       <Route path="/notifications" component={Notifications} />
-        <Route path="/font/set" component={FontSet}/>
+      <Route path="/font/set" component={FontSet} />
       <Redirect to="/" />
     </Switch>
     <Footer />
