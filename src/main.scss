@@ -27,9 +27,22 @@ canvas {
 
 .header {
   z-index: 10;
+  height: 63px;
 
-  color: white;
+  color: #D98032;
   background: $accent-color;
+  font-family: Modak;
+  font-size: 30px;
+  line-height: 45px;
+  text-align:center;
+  img {   
+      margin-right: auto;
+      margin: 15px;
+      display: inline-block;
+    
+  }
+
+
 }
 
 .footer {
@@ -38,7 +51,7 @@ canvas {
   bottom: 0;
   left: 0;
 
-  height: 50px;
+  height: 63px;
 
   text-align: center;
 
@@ -49,7 +62,7 @@ canvas {
   img {
     display: inline-block;
 
-    margin: 10px;
+    margin: 15px;
   }
 }
 
