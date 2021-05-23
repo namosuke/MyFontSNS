@@ -18,10 +18,10 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={Timeline} />
-      <Route path="/font/set" component={FontSet} />
-      <Route exact path="/profile" component={Profile} />
-      <Route path="/messages" component={Messages} />
-      <Route path="/notifications" component={Notifications} />
+      <Route sensitive path="/profile" component={Profile} />
+      <Route sensitive path="/messages" component={Messages} />
+      <Route sensitive path="/notifications" component={Notifications} />
+      <Route sensitive path="/font/set" component={FontSet} />
       <Redirect to="/" />
     </Switch>
     <Footer />
