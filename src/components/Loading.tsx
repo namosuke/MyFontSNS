@@ -1,5 +1,4 @@
 import React from 'react';
-
 import loadingIcon from '../assets/loading.svg';
 
 interface Props {
