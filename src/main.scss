@@ -27,19 +27,23 @@ canvas {
 
 .header {
   z-index: 10;
+
   height: 63px;
+
+  text-align:center;
 
   color: #D98032;
   background: $accent-color;
+
   font-family: Modak;
   font-size: 30px;
   line-height: 45px;
-  text-align:center;
-  img {   
-      margin-right: auto;
-      margin: 15px;
+  img {
       display: inline-block;
-    
+
+      margin: 15px;
+      margin-right: auto;
+
   }
 
 
@@ -63,6 +67,28 @@ canvas {
     display: inline-block;
 
     margin: 15px;
+  }
+}
+
+.set-font-link {
+  position: fixed;
+  z-index: 100;
+  right: 1em;
+  bottom: calc(63px + 1em);
+
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  width: 63px;
+  height: 63px;
+
+  border-radius: 50%;
+  background: #D98032;
+
+  img {
+    width: 46px;
+    height: 46px;
   }
 }
 
