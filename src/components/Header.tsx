@@ -5,7 +5,7 @@ import searchIcon from '../assets/search.svg';
 
 const Header = () => (
   <div className="header sticky top-0 w-full text-center text-2xl pt-1 h-11">
-    <Link to="/profile"><img src={profileIcon} width="30" alt="プロフィール" /></Link>
+    <Link to="/profile"><img src={profileIcon} alt="プロフィール" /></Link>
     <Route exact path="/">
       <Link to="/">Mojy</Link>
     </Route>
@@ -18,7 +18,7 @@ const Header = () => (
     <Route path="/profile">
       <Link to="/profile">プロフィール</Link>
     </Route>
-    <img src={searchIcon} width="30" alt="検索" />
+    <div><img src={searchIcon} alt="検索" /></div>
   </div>
 );
 export default Header;

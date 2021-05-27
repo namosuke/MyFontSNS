@@ -26,11 +26,11 @@ canvas {
 }
 
 .header {
-  z-index: 10;
+  display: grid;
+  align-content: center;
+  justify-content: center;
 
   height: 63px;
-
-  text-align:center;
 
   color: #D98032;
   background: $accent-color;
@@ -38,15 +38,18 @@ canvas {
   font-family: Modak;
   font-size: 30px;
   line-height: 45px;
-  img {
-      display: inline-block;
 
-      margin: 15px;
-      margin-right: auto;
+  grid-template-columns: repeat(3, 1fr);
 
+  * {
+    display: grid;
+    justify-content: center;
   }
 
-
+  img {
+    width: 46px;
+    height: 46px;
+  }
 }
 
 .footer {
@@ -55,18 +58,24 @@ canvas {
   bottom: 0;
   left: 0;
 
-  height: 63px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
 
-  text-align: center;
+  height: 63px;
 
   background: $accent-color;
 
-  font-size: 20px;
+  grid-template-columns: repeat(4, 1fr);
+
+  a {
+    display: grid;
+    justify-content: center;
+  }
 
   img {
-    display: inline-block;
-
-    margin: 15px;
+    width: 46px;
+    height: 46px;
   }
 }
 
