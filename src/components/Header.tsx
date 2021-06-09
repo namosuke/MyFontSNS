@@ -16,7 +16,7 @@ const Header = () => (
       <Link to="/messages">メッセージ</Link>
     </Route>
     <Route path="/profile">
-      <Link to="/profile">プロフィール</Link>
+      <Link to="/profile">Mojy</Link>
     </Route>
     <img src={serchIcon} width="30" alt="検索" />
   </div>
