@@ -66,5 +66,6 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 'off',
     "linebreak-style": "off",
+    "import/no-unresolved": "off",
   },
 };
