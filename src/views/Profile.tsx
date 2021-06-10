@@ -67,9 +67,6 @@ const theme = createMuiTheme({
     secondary: {
       main: '#FDFDEA',
     },
-    background: {
-      paper: 'rgba(0,0,0,0)',
-    },
   },
 });
 
@@ -142,7 +139,6 @@ const Profile = () => {
         </div>
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
-
             <AppBar position="static" color="secondary">
               <Tabs
                 value={value}
