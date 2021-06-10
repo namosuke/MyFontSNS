@@ -2,10 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import
-
 {
   makeStyles,
-  Theme,
   createMuiTheme,
   ThemeProvider,
 }
@@ -54,10 +52,10 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 }));
 
@@ -68,6 +66,9 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#FDFDEA',
+    },
+    background: {
+      paper: 'rgba(0,0,0,0)',
     },
   },
 });
@@ -141,6 +142,7 @@ const Profile = () => {
         </div>
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
+
             <AppBar position="static" color="secondary">
               <Tabs
                 value={value}
