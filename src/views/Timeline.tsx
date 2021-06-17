@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { usePosts } from '../util/fetch';
 import Loading from '../components/Loading';
+import LikeButton from '../components/LikeButton';
 
 const Timeline = () => {
   const posts = usePosts();
@@ -37,18 +38,5 @@ const Timeline = () => {
     </>
   );
 };
-
-function LikeButton() {
-  const [count, setCount] = useState(0);
-  const handleClick = () => {
-    setCount(count + 1);
-  };
-  return (
-    <span className="likeButton" onClick={handleClick} onKeyDown={handleClick} role="button" tabIndex={0}>
-      ♥
-      {count}
-    </span>
-  );
-}
 
 export default Timeline;
