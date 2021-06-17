@@ -65,6 +65,25 @@ module.exports = {
       },
     ],
     'react/jsx-props-no-spreading': 'off',
-    "linebreak-style": "off",
+    'linebreak-style': 'off',
+    'react/prop-types': 'off',
+    'object-curly-newline': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/no-unescaped-entities': 'off',
   },
+  overrides: [
+    {
+      files: [
+        '**/*.stories.*',
+      ],
+      rules: {
+        'import/no-anonymous-default-export': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'react/prop-types': 'off',
+        'object-curly-newline': 'off',
+        'react/jsx-one-expression-per-line': 'off',
+        'react/no-unescaped-entities': 'off',
+      },
+    },
+  ],
 };
