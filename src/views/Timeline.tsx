@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { usePosts } from '../util/fetch';
-
 import Loading from '../components/Loading';
 
 const Timeline = () => {
@@ -30,7 +29,7 @@ const Timeline = () => {
             >
               <p className="text-lg name-tag">{post.user.name}</p>
               <p className="px-5 py-3">{post.text}</p>
-              <div className="post-bottom" />
+              <div className="post-bottom"><LikeButton /></div>
             </div>
           </div>
         ))
@@ -38,5 +37,18 @@ const Timeline = () => {
     </>
   );
 };
+
+function LikeButton() {
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+  return (
+    <span className="likeButton" onClick={handleClick} onKeyDown={handleClick} role="button" tabIndex={0}>
+      ♥
+      {count}
+    </span>
+  );
+}
 
 export default Timeline;
