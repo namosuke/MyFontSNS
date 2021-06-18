@@ -5,7 +5,6 @@ import
 
 {
   makeStyles,
-  Theme,
   createMuiTheme,
   ThemeProvider,
 }
@@ -13,7 +12,6 @@ import
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { teal } from '@material-ui/core/colors';
 import { useCurrentUser, usePosts } from '../util/fetch';
@@ -40,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -54,10 +52,10 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 }));
 

@@ -77,6 +77,14 @@ canvas {
     width: 46px;
     height: 46px;
   }
+  svg {
+    width: 46px;
+    height: 46px;
+    fill: #FFF2B8;
+  }
+  svg:hover{
+    fill: #D98032;
+  }
 }
 
 .set-font-link {
