@@ -2,10 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import
-
 {
   makeStyles,
-  Theme,
   createMuiTheme,
   ThemeProvider,
 }
@@ -54,10 +52,10 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 }));
 
