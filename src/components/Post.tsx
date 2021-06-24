@@ -1,0 +1,36 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import LikeButton from './LikeButton';
+
+function Post({ post } : {post : any}) {
+  return (
+    <div key={post.id} className="ml-3 inline-flex rounded-md box-container">
+      <div className={[
+        'items-center',
+        'justify-center',
+        'px-5',
+        'py-3',
+        'border',
+        'border-transparent',
+        'text-base',
+        'font-medium',
+        'rounded-md',
+        'text-indigo-600',
+        'hover:bg-indigo-50i',
+        'post-card',
+      ].join(' ')}
+      >
+        <p className="text-lg name-tag">{post.user.name}</p>
+        <p className="px-5 py-3">{post.text}</p>
+        <div className="post-bottom"><LikeButton /></div>
+      </div>
+    </div>
+  );
+}
+
+Post.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  post: PropTypes.object.isRequired,
+};
+
+export default Post;
