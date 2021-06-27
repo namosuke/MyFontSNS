@@ -6,7 +6,7 @@ interface Position {
   y: number;
 }
 
-const TegakiCanvas = (props: any) => {
+const TegakiCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -106,7 +106,18 @@ const TegakiCanvas = (props: any) => {
     height: 'calc(100% - 16px)',
   };
 
-  return <canvas {...props} ref={canvasRef} style={s} />;
+  return <canvas ref={canvasRef} style={s} className="bg-white absolute" />;
 };
 
-export default TegakiCanvas;
+export interface TegakiProps {
+  char: string;
+}
+
+const Tegaki = ({ char = '' }: TegakiProps) => (
+  <div className="relative" style={{ width: '400px', height: '400px' }}>
+    <TegakiCanvas />
+    <div className="tegaki-model absolute w-full h-full">{char}</div>
+  </div>
+);
+
+export default Tegaki;
