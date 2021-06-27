@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePosts } from '../util/fetch';
-
 import setFontLinkIcon from '../assets/set-font-link.svg';
 import Loading from '../components/Loading';
+import Post from '../components/Post';
 
 const Timeline = () => {
   const posts = usePosts();
@@ -14,28 +14,7 @@ const Timeline = () => {
     <>
       {
         posts.map((post) => (
-          <div key={post.id} className="ml-3 inline-flex rounded-md box-container">
-            <div
-              className="
-              items-center
-              justify-center
-              px-5
-              py-3
-              border
-              border-transparent
-              text-base
-              font-medium
-              rounded-md
-              text-indigo-600
-              hover:bg-indigo-50i
-              post-card
-              "
-            >
-              <p className="text-lg name-tag">{post.user.name}</p>
-              <p className="px-5 py-3">{post.text}</p>
-              <div className="post-bottom" />
-            </div>
-          </div>
+          <Post post={post} />
         ))
       }
       <div className="set-font-link">
