@@ -198,16 +198,13 @@ canvas {
   margin: 10px auto;
 }
 
+/* Noto Sans JP */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
 
 .tegaki-model {
-  text-align: center;
-  pointer-events: none;
-
   color: rgba(126, 126, 126, 0.1);
-
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 400px;
+  font-size: 300px;
   line-height: 0.9;
 }
 

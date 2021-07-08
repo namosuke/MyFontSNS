@@ -93,30 +93,21 @@ const TegakiCanvas = () => {
     });
   }, []);
 
-  console.log();
-
-  const s = {
-    // TODO: remove magic number 8px (margin = outline)
-    margin: '8px',
-    outline: 'white solid 8px',
-    border: '2px solid black',
-    // TODO: check if calc(100% - 16px) works
-    // TODO: remove magic number 16px (16px = margin * 2)
-    width: 'calc(100% - 16px)',
-    height: 'calc(100% - 16px)',
-  };
-
-  return <canvas ref={canvasRef} style={s} className="bg-white absolute" />;
+  return <canvas ref={canvasRef} className="bg-white absolute w-full h-full" />;
 };
 
 export interface TegakiProps {
   char: string;
+  func: any;
 }
 
-const Tegaki = ({ char = '' }: TegakiProps) => (
-  <div className="relative" style={{ width: '400px', height: '400px' }}>
-    <TegakiCanvas />
-    <div className="tegaki-model absolute w-full h-full">{char}</div>
+const Tegaki = ({ char = '', func }: TegakiProps) => (
+  <div>
+    <div className="relative overflow-hidden" style={{ width: '300px', height: '300px' }}>
+      <TegakiCanvas />
+      <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{char}</div>
+    </div>
+    <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { func('a', 'b'); }}>保存</button>
   </div>
 );
 
