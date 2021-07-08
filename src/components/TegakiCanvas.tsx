@@ -1,18 +1,23 @@
 /* eslint-disable max-len */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Position {
   x: number;
   y: number;
 }
 
-const TegakiCanvas = () => {
+export interface TegakiCanvasProps {
+  canvasMap: number[][];
+  setCanvasMap: any;
+}
+
+const TegakiCanvas = ({ canvasMap, setCanvasMap }: TegakiCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const cellSize = 12;
     const [rowCellCount, colCellCount] = [32, 32];
-    const cells = Array(rowCellCount).fill(0).map(() => Array(colCellCount).fill(0));
+    const cells = canvasMap;
 
     const canvas = canvasRef.current!;
 
@@ -21,6 +26,7 @@ const TegakiCanvas = () => {
     canvas.height = colCellCount * cellSize;
 
     const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // TODO: do we need canvas.height / canvas.clientHeight?
     const canvasPixelTimes = canvas.width / canvas.clientWidth;
@@ -36,6 +42,7 @@ const TegakiCanvas = () => {
       const colIdx = Math.floor(mousePos.x / cellSize);
 
       cells[rowIdx][colIdx] = 1;
+      setCanvasMap(cells);
     };
 
     // マウス高速時の隙間を埋めます
@@ -54,6 +61,7 @@ const TegakiCanvas = () => {
     };
 
     const renderCells = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       cells.forEach((row, rowIdx) => {
         row.forEach((col, colIdx) => {
           if (col) {
@@ -98,17 +106,36 @@ const TegakiCanvas = () => {
 
 export interface TegakiProps {
   char: string;
-  func: any;
 }
 
-const Tegaki = ({ char = '', func }: TegakiProps) => (
-  <div>
-    <div className="relative overflow-hidden" style={{ width: '300px', height: '300px' }}>
-      <TegakiCanvas />
-      <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{char}</div>
+const Tegaki = ({ char = '' }: TegakiProps) => {
+  const [font, setFont] = useState({});
+
+  const updateFont = (keyChar: string, value: number[][]): void => {
+    setFont((prevFont: { [key: string]: any }) => {
+      const updatedFont = { ...prevFont };
+      updatedFont[keyChar] = value;
+      return updatedFont;
+    });
+  };
+  console.log(font);
+
+  const initCanvasMap = Array(32).fill(0).map(() => Array(32).fill(0));
+
+  const [canvasMap, setCanvasMap]: [number[][], any] = useState(initCanvasMap);
+  const [resetCanvasTime, setResetCanvasTime]: [number, any] = useState(Date.now());
+  console.log(canvasMap);
+
+  return (
+    <div>
+      <div className="relative overflow-hidden" style={{ width: '300px', height: '300px' }}>
+        <TegakiCanvas canvasMap={canvasMap} setCanvasMap={setCanvasMap} key={resetCanvasTime} />
+        <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{char}</div>
+      </div>
+      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { updateFont(char, canvasMap); }}>保存</button>
+      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { setCanvasMap(initCanvasMap); setResetCanvasTime(Date.now()); }}>全消し</button>
     </div>
-    <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { func('a', 'b'); }}>保存</button>
-  </div>
-);
+  );
+};
 
 export default Tegaki;
