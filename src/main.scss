@@ -104,7 +104,7 @@ canvas {
 .post-card {
   width: 400px;
   max-width: 90%;
-  height: 150px;
+  height: 150px auto;
   margin: 0 auto;
 
   background-color: $post-blue;
