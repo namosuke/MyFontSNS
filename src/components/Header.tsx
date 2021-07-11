@@ -21,6 +21,9 @@ const Header = () => (
     <Route path="/font/set">
       <Link to="/font/set">フォントセット</Link>
     </Route>
+    <Route path="/post">
+      <Link to="/post">投稿</Link>
+    </Route>
     <div><img src={searchIcon} alt="検索" /></div>
   </div>
 );
