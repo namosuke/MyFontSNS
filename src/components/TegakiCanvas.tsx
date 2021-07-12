@@ -9,9 +9,10 @@ interface Position {
 export interface TegakiCanvasProps {
   canvasMap: number[][];
   setCanvasMap: any;
+  resetted: number;
 }
 
-const TegakiCanvas = ({ canvasMap, setCanvasMap }: TegakiCanvasProps) => {
+const TegakiCanvas = ({ canvasMap, setCanvasMap, resetted }: TegakiCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -42,7 +43,6 @@ const TegakiCanvas = ({ canvasMap, setCanvasMap }: TegakiCanvasProps) => {
       const colIdx = Math.floor(mousePos.x / cellSize);
 
       cells[rowIdx][colIdx] = 1;
-      setCanvasMap(cells);
     };
 
     // マウス高速時の隙間を埋めます
@@ -98,8 +98,9 @@ const TegakiCanvas = ({ canvasMap, setCanvasMap }: TegakiCanvasProps) => {
 
     window.addEventListener('mouseup', () => {
       canvas.removeEventListener('mousemove', draw);
+      setCanvasMap(cells);
     });
-  }, []);
+  }, [resetted]);
 
   return <canvas ref={canvasRef} className="bg-white absolute w-full h-full" />;
 };
@@ -110,30 +111,54 @@ export interface TegakiProps {
 
 const Tegaki = ({ char = '' }: TegakiProps) => {
   const [font, setFont] = useState({});
+  const [inputChar, setInputChar] = useState(char);
 
   const updateFont = (keyChar: string, value: number[][]): void => {
     setFont((prevFont: { [key: string]: any }) => {
       const updatedFont = { ...prevFont };
       updatedFont[keyChar] = value;
+      console.log(updatedFont);
       return updatedFont;
     });
   };
-  console.log(font);
 
   const initCanvasMap = Array(32).fill(0).map(() => Array(32).fill(0));
 
   const [canvasMap, setCanvasMap]: [number[][], any] = useState(initCanvasMap);
   const [resetCanvasTime, setResetCanvasTime]: [number, any] = useState(Date.now());
-  console.log(canvasMap);
+
+  const downloadJson = () => {
+    const fontJson: any = {};
+    fontJson.formatVersion = '0.0.0';
+    fontJson.data = { ...font };
+    fontJson.color = 'black';
+    fontJson.defaultWidth = 32;
+    fontJson.defaultHeight = 32;
+    fontJson.charCount = Object.keys(font).length;
+    // https://www.aruse.net/entry/2019/11/02/095636
+    const fileName = 'mfsFont.json';
+    const data = new Blob([JSON.stringify(fontJson)], { type: 'text/json' });
+    const jsonURL = window.URL.createObjectURL(data);
+    const link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = jsonURL;
+    link.setAttribute('download', fileName);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div>
       <div className="relative overflow-hidden" style={{ width: '300px', height: '300px' }}>
-        <TegakiCanvas canvasMap={canvasMap} setCanvasMap={setCanvasMap} key={resetCanvasTime} />
-        <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{char}</div>
+        <TegakiCanvas canvasMap={canvasMap} setCanvasMap={setCanvasMap} resetted={resetCanvasTime} />
+        <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{inputChar}</div>
       </div>
-      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { updateFont(char, canvasMap); }}>保存</button>
+      <div>
+        <input type="text" className="m-4 text-base p-1 border border-gray-400" value={inputChar} onChange={(e) => { setInputChar(e.target.value); }} />
+      </div>
+      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { updateFont(inputChar, canvasMap); setCanvasMap(initCanvasMap); setResetCanvasTime(Date.now()); }}>保存</button>
       <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { setCanvasMap(initCanvasMap); setResetCanvasTime(Date.now()); }}>全消し</button>
+      <button type="button" className="bg-yellow-600 text-white px-2 h-8 rounded-full m-4" onClick={() => { downloadJson(); }}>ダウンロード</button>
     </div>
   );
 };
