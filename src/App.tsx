@@ -8,6 +8,7 @@ import Profile from './views/Profile';
 import Timeline from './views/Timeline';
 import Messages from './views/Messages';
 import FontSet from './views/FontSet';
+import Createpost from './views/Createpost';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -22,6 +23,7 @@ const App = () => (
       <Route sensitive path="/messages" component={Messages} />
       <Route sensitive path="/notifications" component={Notifications} />
       <Route sensitive path="/font/set" component={FontSet} />
+      <Route sensitive path="/post" component={Createpost} />
       <Redirect to="/" />
     </Switch>
     <Footer />

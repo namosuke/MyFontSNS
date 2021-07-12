@@ -18,7 +18,7 @@ const Timeline = () => {
         ))
       }
       <div className="set-font-link">
-        <Link to="/font/set">
+        <Link to="/post">
           <img src={setFontLinkIcon} alt="A link to set font" />
         </Link>
       </div>
