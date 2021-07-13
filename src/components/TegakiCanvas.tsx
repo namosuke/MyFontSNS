@@ -1,18 +1,24 @@
 /* eslint-disable max-len */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Position {
   x: number;
   y: number;
 }
 
-const TegakiCanvas = () => {
+export interface TegakiCanvasProps {
+  canvasMap: number[][];
+  setCanvasMap: any;
+  resetted: number;
+}
+
+const TegakiCanvas = ({ canvasMap, setCanvasMap, resetted }: TegakiCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const cellSize = 12;
     const [rowCellCount, colCellCount] = [32, 32];
-    const cells = Array(rowCellCount).fill(0).map(() => Array(colCellCount).fill(0));
+    const cells = canvasMap;
 
     const canvas = canvasRef.current!;
 
@@ -21,6 +27,7 @@ const TegakiCanvas = () => {
     canvas.height = colCellCount * cellSize;
 
     const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // TODO: do we need canvas.height / canvas.clientHeight?
     const canvasPixelTimes = canvas.width / canvas.clientWidth;
@@ -54,6 +61,7 @@ const TegakiCanvas = () => {
     };
 
     const renderCells = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       cells.forEach((row, rowIdx) => {
         row.forEach((col, colIdx) => {
           if (col) {
@@ -90,34 +98,69 @@ const TegakiCanvas = () => {
 
     window.addEventListener('mouseup', () => {
       canvas.removeEventListener('mousemove', draw);
+      setCanvasMap(cells);
     });
-  }, []);
+  }, [resetted]);
 
-  console.log();
-
-  const s = {
-    // TODO: remove magic number 8px (margin = outline)
-    margin: '8px',
-    outline: 'white solid 8px',
-    border: '2px solid black',
-    // TODO: check if calc(100% - 16px) works
-    // TODO: remove magic number 16px (16px = margin * 2)
-    width: 'calc(100% - 16px)',
-    height: 'calc(100% - 16px)',
-  };
-
-  return <canvas ref={canvasRef} style={s} className="bg-white absolute" />;
+  return <canvas ref={canvasRef} className="bg-white absolute w-full h-full" />;
 };
 
 export interface TegakiProps {
   char: string;
 }
 
-const Tegaki = ({ char = '' }: TegakiProps) => (
-  <div className="relative" style={{ width: '400px', height: '400px' }}>
-    <TegakiCanvas />
-    <div className="tegaki-model absolute w-full h-full">{char}</div>
-  </div>
-);
+const Tegaki = ({ char = '' }: TegakiProps) => {
+  const [font, setFont] = useState({});
+  const [inputChar, setInputChar] = useState(char);
+
+  const updateFont = (keyChar: string, value: number[][]): void => {
+    setFont((prevFont: { [key: string]: any }) => {
+      const updatedFont = { ...prevFont };
+      updatedFont[keyChar] = value;
+      console.log(updatedFont);
+      return updatedFont;
+    });
+  };
+
+  const initCanvasMap = Array(32).fill(0).map(() => Array(32).fill(0));
+
+  const [canvasMap, setCanvasMap]: [number[][], any] = useState(initCanvasMap);
+  const [resetCanvasTime, setResetCanvasTime]: [number, any] = useState(Date.now());
+
+  const downloadJson = () => {
+    const fontJson: any = {};
+    fontJson.formatVersion = '0.0.0';
+    fontJson.data = { ...font };
+    fontJson.color = 'black';
+    fontJson.defaultWidth = 32;
+    fontJson.defaultHeight = 32;
+    fontJson.charCount = Object.keys(font).length;
+    // https://www.aruse.net/entry/2019/11/02/095636
+    const fileName = 'mfsFont.json';
+    const data = new Blob([JSON.stringify(fontJson)], { type: 'text/json' });
+    const jsonURL = window.URL.createObjectURL(data);
+    const link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = jsonURL;
+    link.setAttribute('download', fileName);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div>
+      <div className="relative overflow-hidden" style={{ width: '300px', height: '300px' }}>
+        <TegakiCanvas canvasMap={canvasMap} setCanvasMap={setCanvasMap} resetted={resetCanvasTime} />
+        <div className="tegaki-model absolute w-full h-full text-center pointer-events-none">{inputChar}</div>
+      </div>
+      <div>
+        <input type="text" className="m-4 text-base p-1 border border-gray-400" value={inputChar} onChange={(e) => { setInputChar(e.target.value); }} />
+      </div>
+      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { updateFont(inputChar, canvasMap); setCanvasMap(initCanvasMap); setResetCanvasTime(Date.now()); }}>保存</button>
+      <button type="button" className="bg-yellow-600 text-white w-20 h-8 rounded-full m-4" onClick={() => { setCanvasMap(initCanvasMap); setResetCanvasTime(Date.now()); }}>全消し</button>
+      <button type="button" className="bg-yellow-600 text-white px-2 h-8 rounded-full m-4" onClick={() => { downloadJson(); }}>ダウンロード</button>
+    </div>
+  );
+};
 
 export default Tegaki;
