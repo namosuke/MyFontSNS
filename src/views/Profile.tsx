@@ -96,28 +96,6 @@ const Profile = () => {
               <p>{`フォロワー${currentUser.follower.length}`}</p>
             </div>
           </div>
-
-          <div className="right-container">
-            {
-              currentUser.tags.map((tag) => (
-                <p
-                  key={tag}
-                  className={[
-                    'flex', 'items-center', 'justify-center',
-                    'px-1', 'py-1',
-                    'border', 'border-transparent',
-                    'text-base', 'font-medium', 'text-white',
-                    'rounded-md',
-                    'bg-indigo-600', 'hover:bg-indigo-700',
-                    'md:py-4', 'md:text-lg', 'md:px-10',
-                    'tags',
-                  ].join(' ')}
-                >
-                  {tag}
-                </p>
-              ))
-            }
-          </div>
         </div>
 
         <div>
@@ -129,7 +107,7 @@ const Profile = () => {
               'border', 'border-transparent',
               'text-base', 'font-medium', 'text-white',
               'rounded-md',
-              'bg-indigo-600', 'hover:bg-indigo-700',
+              'bg-yellow-400', 'hover:bg-yellow-700',
               'md:py-4', 'md:text-lg', 'md:px-10',
             ].join(' ')}
             >

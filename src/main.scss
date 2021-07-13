@@ -142,12 +142,15 @@ canvas {
 
 .profile-icon {
   width: 50px;
+  
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 .profile-container{
   padding: 10px;
-
-  background-image: url('./assets/paper.jpg');
+  
 }
 
 .posts-container {
@@ -167,9 +170,10 @@ canvas {
 }
 
 .follow-container {
+  display: flex;
   p{
+    font-size: x-small;
     display: inline-block;
-
     margin: auto 10px;
   }
 
