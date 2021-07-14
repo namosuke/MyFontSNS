@@ -20,6 +20,15 @@ interface Post {
   text: string;
 }
 
+interface Font {
+  formatVersion: string;
+  data: any;
+  color: string;
+  defaultWidth: number;
+  defaultHeight: number;
+  charCount: number;
+}
+
 export const useCurrentUser = () => {
   const [currentUser, setCurrentUser] = useState<User | undefined>();
 
@@ -60,7 +69,28 @@ export const usePosts = () => {
   return posts;
 };
 
+export const useFont = () => {
+  const [font, setFont] = useState<Font>();
+
+  useEffect(() => {
+    const fetchFont = async () => {
+      try {
+        const { data } = await axios.get('./seeds/mfsFont.json');
+        console.log('font', data);
+        setFont(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFont();
+  }, []);
+
+  return font;
+};
+
 export default {
   useCurrentUser,
   usePosts,
+  useFont,
 };
