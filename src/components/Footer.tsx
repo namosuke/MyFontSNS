@@ -36,6 +36,18 @@ const Footer = () => (
       <Link to="/messages"><img src={messageIcon} width="43" height="46" alt="メッセージ" /></Link>
       <Link to="/profile"><img src={profileIcon2} alt="プロフィール" /></Link>
     </Route>
+    <Route path="/font/set">
+      <Link to="/"><img src={homeIcon2} alt="タイムライン" /></Link>
+      <Link to="/notifications"><img src={bellIcon} alt="通知" /></Link>
+      <Link to="/messages"><img src={messageIcon} width="43" height="46" alt="メッセージ" /></Link>
+      <Link to="/profile"><img src={profileIcon} alt="プロフィール" /></Link>
+    </Route>
+    <Route path="/post">
+      <Link to="/"><img src={homeIcon2} alt="タイムライン" /></Link>
+      <Link to="/notifications"><img src={bellIcon} alt="通知" /></Link>
+      <Link to="/messages"><img src={messageIcon} width="43" height="46" alt="メッセージ" /></Link>
+      <Link to="/profile"><img src={profileIcon} alt="プロフィール" /></Link>
+    </Route>
 
   </div>
 );
