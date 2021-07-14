@@ -12,11 +12,7 @@ const Timeline = () => {
 
   return (
     <>
-      {
-        posts.map((post) => (
-          <Post post={post} />
-        ))
-      }
+      {posts.map((post) => <Post post={post} key={post.id} />)}
       <div className="set-font-link">
         <Link to="/post">
           <img src={setFontLinkIcon} alt="A link to set font" />
