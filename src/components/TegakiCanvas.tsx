@@ -113,19 +113,19 @@ const Tegaki = ({ char = '' }: TegakiProps) => {
   const [font, setFont] = useState({});
   const [inputChar, setInputChar] = useState(char);
 
-  const updateFont = (keyChar: string, value: number[][]): void => {
-    setFont((prevFont: { [key: string]: any }) => {
-      const updatedFont = { ...prevFont };
-      updatedFont[keyChar] = value;
-      console.log(updatedFont);
-      return updatedFont;
-    });
-  };
-
   const initCanvasMap = Array(32).fill(0).map(() => Array(32).fill(0));
 
   const [canvasMap, setCanvasMap]: [number[][], any] = useState(initCanvasMap);
   const [resetCanvasTime, setResetCanvasTime]: [number, any] = useState(Date.now());
+
+  const updateFont = (keyChar: string, value: number[][]): void => {
+    setFont((prevFont: { [key: string]: number[][] }) => {
+      const updatedFont = JSON.parse(JSON.stringify(prevFont));
+      updatedFont[keyChar] = JSON.parse(JSON.stringify(value));
+      console.log(updatedFont);
+      return updatedFont;
+    });
+  };
 
   const downloadJson = () => {
     const fontJson: any = {};
