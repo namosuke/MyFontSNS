@@ -1,13 +1,15 @@
 /* eslint-disable max-len */
 import React, { useEffect, useRef, useState } from 'react';
 
+type FontData = number[][];
+
 interface Position {
   x: number;
   y: number;
 }
 
 export interface TegakiCanvasProps {
-  canvasMap: number[][];
+  canvasMap: FontData;
   setCanvasMap: any;
   resetted: number;
 }
@@ -113,8 +115,8 @@ const Tegaki = ({ char = '' }: TegakiProps) => {
   const [font, setFont] = useState({});
   const [inputChar, setInputChar] = useState(char);
 
-  const updateFont = (keyChar: string, value: number[][]): void => {
-    setFont((prevFont: { [key: string]: any }) => {
+  const updateFont = (keyChar: string, value: FontData): void => {
+    setFont((prevFont: { [key: string]: FontData }) => {
       const updatedFont = { ...prevFont };
       updatedFont[keyChar] = value;
       console.log(updatedFont);
@@ -122,10 +124,10 @@ const Tegaki = ({ char = '' }: TegakiProps) => {
     });
   };
 
-  const initCanvasMap = Array(32).fill(0).map(() => Array(32).fill(0));
+  const initCanvasMap: FontData = Array(32).fill(0).map(() => Array(32).fill(0));
 
-  const [canvasMap, setCanvasMap]: [number[][], any] = useState(initCanvasMap);
-  const [resetCanvasTime, setResetCanvasTime]: [number, any] = useState(Date.now());
+  const [canvasMap, setCanvasMap] = useState(initCanvasMap);
+  const [resetCanvasTime, setResetCanvasTime] = useState(Date.now());
 
   const downloadJson = () => {
     const fontJson: any = {};
