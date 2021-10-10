@@ -70,7 +70,6 @@ module.exports = {
         "import/no-anonymous-default-export": "off",
         "import/no-extraneous-dependencies": "off",
         "react/prop-types": "off",
-        "object-curly-newline": "off",
         "react/jsx-one-expression-per-line": "off",
         "react/no-unescaped-entities": "off",
       },
