@@ -4,17 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="button"], input[type="submit"], button, select, summary {
+input[type="button"],
+input[type="submit"],
+button,
+select,
+summary {
   cursor: pointer;
 }
 
 /* スタイルここから */
-$accent-color:  rgb(255, 196, 0);
+$accent-color: rgb(255, 196, 0);
 $base-color: lemonchiffon;
-$orange: #E48E00;
-$post-blue: #DDF7FD;
-$post-pink: #FDDDFA;
-$post-yellow: #F8FAC4;
+$orange: #e48e00;
+$post-blue: #ddf7fd;
+$post-pink: #fdddfa;
+$post-yellow: #f8fac4;
 
 body {
   background-color: $base-color;
@@ -32,7 +36,7 @@ canvas {
 
   height: 63px;
 
-  color: #D98032;
+  color: #d98032;
   background: $accent-color;
 
   font-family: Modak;
@@ -93,7 +97,7 @@ canvas {
   height: 63px;
 
   border-radius: 50%;
-  background: #D98032;
+  background: #d98032;
 
   img {
     width: 46px;
@@ -109,9 +113,9 @@ canvas {
   margin: 0 auto;
 
   background-color: $post-blue;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 
-  p{
+  p {
     display: block;
   }
 }
@@ -132,7 +136,6 @@ canvas {
 }
 
 .name-tag {
-
 }
 
 .load-icon {
@@ -142,15 +145,13 @@ canvas {
 
 .profile-icon {
   width: 50px;
-  
+
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
-.profile-container{
+.profile-container {
   padding: 10px;
-  
 }
 
 .posts-container {
@@ -171,13 +172,13 @@ canvas {
 
 .follow-container {
   display: flex;
-  p{
+  p {
     font-size: x-small;
     display: inline-block;
     margin: auto 10px;
   }
 
-  p:first-child{
+  p:first-child {
     margin-left: 0;
   }
 }
@@ -187,11 +188,11 @@ canvas {
 }
 
 /* Noto Sans JP */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
 
 .tegaki-model {
   color: rgba(126, 126, 126, 0.1);
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 300px;
   line-height: 0.9;
 }

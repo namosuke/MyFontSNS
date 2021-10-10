@@ -3,23 +3,8 @@
     "id": 1,
     "name": "Andy",
     "screen_id": "sachiko",
-    "tags": [
-      "a",
-      "b"
-    ],
-    "follow": [
-      0,
-      2,
-      5,
-      3,
-      5
-    ],
-    "follower": [
-      0,
-      2,
-      4,
-      5,
-      3
-    ]
+    "tags": ["a", "b"],
+    "follow": [0, 2, 5, 3, 5],
+    "follower": [0, 2, 4, 5, 3]
   }
 ]

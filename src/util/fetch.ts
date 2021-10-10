@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface User {
   id: number;
   name: string;
-  'screen_id': string;
+  // eslint-disable-next-line
+  screen_id: string;
   tags: string[];
   follow: number[];
   follower: number[];
@@ -14,7 +15,8 @@ interface Post {
   user: {
     id: number;
     name: string;
-    'screen_id': string;
+    // eslint-disable-next-line
+    screen_id: string;
   };
   id: number;
   text: string;
@@ -35,8 +37,8 @@ export const useCurrentUser = () => {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const { data } = await axios.get('./seeds/users.json');
-        console.log('user tags', data[0].tags);
+        const { data } = await axios.get("./seeds/users.json");
+        console.log("user tags", data[0].tags);
         setCurrentUser(data[0]);
       } catch (error) {
         console.error(error);
@@ -55,8 +57,8 @@ export const usePosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axios.get('./seeds/posts.json');
-        console.log('posts', data);
+        const { data } = await axios.get("./seeds/posts.json");
+        console.log("posts", data);
         setPosts(data);
       } catch (error) {
         console.error(error);
@@ -75,8 +77,8 @@ export const useFont = () => {
   useEffect(() => {
     const fetchFont = async () => {
       try {
-        const { data } = await axios.get('./seeds/mfsFont.json');
-        console.log('font', data);
+        const { data } = await axios.get("./seeds/mfsFont.json");
+        console.log("font", data);
         setFont(data);
       } catch (error) {
         console.error(error);

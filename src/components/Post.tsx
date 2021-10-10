@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import LikeButton from './LikeButton';
+import PropTypes from "prop-types";
+import React from "react";
+import LikeButton from "./LikeButton";
 
 export interface PostProps {
   post: any;
@@ -27,7 +27,9 @@ function Post({ post }: PostProps) {
       >
         <p className="text-lg name-tag">{post.user.name}</p>
         <p className="px-5 py-3">{post.text}</p>
-        <div className="post-bottom"><LikeButton /></div>
+        <div className="post-bottom">
+          <LikeButton />
+        </div>
       </div>
     </div>
   );

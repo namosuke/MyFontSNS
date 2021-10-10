@@ -1,21 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import
-{
+import {
   makeStyles,
   createMuiTheme,
   ThemeProvider,
-}
-  from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { teal } from '@material-ui/core/colors';
-import { useCurrentUser, usePosts } from '../util/fetch';
-import Loading from '../components/Loading';
+} from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import { teal } from "@material-ui/core/colors";
+import { useCurrentUser, usePosts } from "../util/fetch";
+import Loading from "../components/Loading";
 
 interface TabPanelProps {
   children: React.ReactNode;
@@ -24,9 +22,7 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-  const {
-    children, value, index, ...other
-  } = props;
+  const { children, value, index, ...other } = props;
 
   return (
     <div
@@ -48,14 +44,14 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: any) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: "rgba(0,0,0,0)",
   },
 }));
 
@@ -65,17 +61,17 @@ const theme = createMuiTheme({
       main: teal[500],
     },
     secondary: {
-      main: '#FDFDEA',
+      main: "#FDFDEA",
     },
   },
 });
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const currentUser = useCurrentUser();
   const posts = usePosts();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  // eslint-disable-next-line
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
@@ -85,7 +81,6 @@ const Profile = () => {
   return (
     <>
       <div className="profile-container">
-
         <div className="profile-main-container grid">
           <div className="left-container">
             <Loading className="profile-icon" />
@@ -100,16 +95,26 @@ const Profile = () => {
 
         <div>
           <Link to="/font/set">
-            <p className={[
-              'w-full',
-              'flex', 'items-center', 'justify-center',
-              'px-8', 'py-3',
-              'border', 'border-transparent',
-              'text-base', 'font-medium', 'text-white',
-              'rounded-md',
-              'bg-yellow-400', 'hover:bg-yellow-700',
-              'md:py-4', 'md:text-lg', 'md:px-10',
-            ].join(' ')}
+            <p
+              className={[
+                "w-full",
+                "flex",
+                "items-center",
+                "justify-center",
+                "px-8",
+                "py-3",
+                "border",
+                "border-transparent",
+                "text-base",
+                "font-medium",
+                "text-white",
+                "rounded-md",
+                "bg-yellow-400",
+                "hover:bg-yellow-700",
+                "md:py-4",
+                "md:text-lg",
+                "md:px-10",
+              ].join(" ")}
             >
               フォントを見る
             </p>
@@ -122,7 +127,7 @@ const Profile = () => {
                 value={value}
                 TabIndicatorProps={{
                   style: {
-                    backgroundColor: '#D98032',
+                    backgroundColor: "#D98032",
                   },
                 }}
                 onChange={handleChange}
@@ -136,29 +141,34 @@ const Profile = () => {
             </AppBar>
             <TabPanel value={value} index={0}>
               <div className="posts-container">
-                {
-                  posts.filter((post) => post.user.id === currentUser.id)
-                    .map((post) => (
+                {posts
+                  .filter((post) => post.user.id === currentUser.id)
+                  .map((post) => (
+                    <div
+                      key={post.id}
+                      className="ml-3 inline-flex rounded-md box-container"
+                    >
                       <div
-                        key={post.id}
-                        className="ml-3 inline-flex rounded-md box-container"
+                        className={[
+                          "items-center",
+                          "justify-center",
+                          "px-5",
+                          "py-3",
+                          "border",
+                          "border-transparent",
+                          "text-base",
+                          "font-medium",
+                          "rounded-md",
+                          "text-indigo-600",
+                          "hover:bg-indigo-50i",
+                          "post-card",
+                        ].join(" ")}
                       >
-                        <div className={[
-                          'items-center', 'justify-center',
-                          'px-5', 'py-3',
-                          'border', 'border-transparent',
-                          'text-base', 'font-medium',
-                          'rounded-md',
-                          'text-indigo-600', 'hover:bg-indigo-50i',
-                          'post-card',
-                        ].join(' ')}
-                        >
-                          <p className="text-lg name-tag">{post.user.name}</p>
-                          <p className="px-5 py-3">{post.text}</p>
-                        </div>
+                        <p className="text-lg name-tag">{post.user.name}</p>
+                        <p className="px-5 py-3">{post.text}</p>
                       </div>
-                    ))
-                }
+                    </div>
+                  ))}
               </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -172,7 +182,6 @@ const Profile = () => {
             </TabPanel>
           </div>
         </ThemeProvider>
-
       </div>
     </>
   );

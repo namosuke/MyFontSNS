@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Tegaki from '../components/TegakiCanvas';
+import Tegaki from "../components/TegakiCanvas";
 
-const FontSet = () => (
-  <Tegaki char="慶" />
-);
+const FontSet = () => <Tegaki char="慶" />;
 
 export default FontSet;
