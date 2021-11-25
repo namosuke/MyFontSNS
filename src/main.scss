@@ -24,11 +24,6 @@ body {
   background-color: $base-color;
 }
 
-canvas {
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
-
 .header {
   display: grid;
   align-content: center;
