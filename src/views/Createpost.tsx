@@ -1,9 +1,26 @@
 /* eslint-disable max-len */
 import React, { useState } from "react";
 import PostCanvas from "../components/postCanvas";
+import { useFont } from "../util/fetch";
 
 const Createpost = () => {
   const [textarea, setTextarea] = useState("");
+  const font = useFont();
+  const post = () => {
+    if (font) {
+      const postData = {
+        text: textarea,
+        textArray: Array.from(textarea),
+        formatVersion: "0.0.0",
+        textCount: 0,
+        widths: [],
+        heights: [],
+        font: "mfsFont",
+        data: [],
+      };
+      console.log(postData);
+    }
+  };
   return (
     <>
       <textarea
@@ -15,6 +32,7 @@ const Createpost = () => {
       <button
         type="button"
         className="w-max h-max bg-yellow-600 rounded-full text-white px-[10px] ml-[10px]"
+        onClick={post}
       >
         投稿
       </button>

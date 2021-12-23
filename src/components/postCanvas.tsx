@@ -31,7 +31,7 @@ const PostCanvas = ({ text }: { text: string }) => {
       p.clear();
       p.scale(scaling);
 
-      const spreadPostCanvasText = postCanvasText.current.split("");
+      const spreadPostCanvasText = Array.from(postCanvasText.current);
       const currentBasePosition = { x: 0, y: 0 };
       spreadPostCanvasText.forEach((char) => {
         if (char in fontFile?.data) {
