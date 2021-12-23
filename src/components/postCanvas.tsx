@@ -20,14 +20,12 @@ const PostCanvas = ({ text }: { text: string }) => {
     const { data: fontFile } = await axios.get("./seeds/mfsFont.json");
     const scaling = 0.5;
 
-    p.setup = () => {
-      if (postCanvasElement.current) {
-        // Ctrl + F5じゃないと反映しません
-        p.createCanvas(postCanvasElement.current.clientWidth, 200);
-      }
-      p.noLoop();
-      p5Ref.current = p;
-    };
+    // 何故かp.setupだと呼び出されない
+    if (postCanvasElement.current) {
+      p.createCanvas(postCanvasElement.current.clientWidth, 100);
+    }
+    p.noLoop();
+    p5Ref.current = p;
 
     p.draw = () => {
       p.clear();

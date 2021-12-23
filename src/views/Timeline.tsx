@@ -11,7 +11,7 @@ const Timeline = () => {
   if (!posts) return <Loading className="load-icon" />;
 
   return (
-    <>
+    <div className="pb-20">
       {posts.map((post) => (
         <Post post={post} key={post.id} />
       ))}
@@ -20,7 +20,7 @@ const Timeline = () => {
           <img src={setFontLinkIcon} alt="A link to set font" />
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 
