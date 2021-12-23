@@ -14,7 +14,7 @@ const Createpost = () => {
       <PostCanvas text={textarea} />
       <button
         type="button"
-        className="w-max h-max bg-yellow-600 rounded-full text-[#fff]"
+        className="w-max h-max bg-yellow-600 rounded-full text-white px-[10px] ml-[10px]"
       >
         投稿
       </button>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "craco start",
+    "start": "cross-env TAILWIND_MODE=watch craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -52,6 +52,7 @@
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "9",
     "axios": "^0.21.0",
+    "cross-env": "^7.0.3",
     "p5": "^1.4.0",
     "postcss": "7",
     "prettier": "^2.4.1",
