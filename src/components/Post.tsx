@@ -9,7 +9,7 @@ export interface PostProps {
 
 function Post({ post }: PostProps) {
   return (
-    <div key={post.id} className="ml-3 inline-flex rounded-md box-container">
+    <div className="ml-3 inline-flex rounded-md box-container">
       <div
         className="
           items-center

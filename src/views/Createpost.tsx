@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState } from "react";
-import PostCanvas from "../components/postCanvas";
+import Post from "../components/Post";
 import { useFont } from "../util/fetch";
 
 const Createpost = () => {
@@ -26,12 +26,12 @@ const Createpost = () => {
       <textarea
         value={textarea}
         onChange={(e) => setTextarea(e.target.value)}
-        className="m-4 text-base p-1 border border-gray-400 w-80"
+        className="block mx-auto mt-4 text-base p-1 border border-gray-400 w-96 text-lg"
       />
-      <PostCanvas text={textarea} />
+      <Post post={{ user: { name: "プレビュー" }, text: textarea }} />
       <button
         type="button"
-        className="w-max h-max bg-yellow-600 rounded-full text-white px-[10px] ml-[10px]"
+        className="block w-max h-max bg-yellow-600 rounded-full text-white text-xl px-[10px] mt-6 mx-auto"
         onClick={post}
       >
         投稿
