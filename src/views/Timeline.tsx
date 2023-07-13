@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { usePosts } from '../util/fetch';
-import setFontLinkIcon from '../assets/set-font-link.svg';
-import Loading from '../components/Loading';
-import Post from '../components/Post';
+import React from "react";
+import { Link } from "react-router-dom";
+import { usePosts } from "../util/fetch";
+import setFontLinkIcon from "../assets/set-font-link.svg";
+import Loading from "../components/Loading";
+import Post from "../components/Post";
 
 const Timeline = () => {
   const posts = usePosts();
@@ -12,7 +12,9 @@ const Timeline = () => {
 
   return (
     <>
-      {posts.map((post) => <Post post={post} key={post.id} />)}
+      {posts.map((post) => (
+        <Post post={post} key={post.id} />
+      ))}
       <div className="set-font-link">
         <Link to="/post">
           <img src={setFontLinkIcon} alt="A link to set font" />

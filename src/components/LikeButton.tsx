@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function LikeButton() {
   const [count, setCount] = useState(0);
@@ -6,9 +6,14 @@ function LikeButton() {
     setCount(count + 1);
   };
   return (
-    <span className="likeButton" onClick={handleClick} onKeyDown={handleClick} role="button" tabIndex={0}>
-      ♥
-      {count}
+    <span
+      className="likeButton"
+      onClick={handleClick}
+      onKeyDown={handleClick}
+      role="button"
+      tabIndex={0}
+    >
+      ♥{count}
     </span>
   );
 }
